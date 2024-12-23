@@ -1,4 +1,4 @@
-# main.py
+# app.py
 from flask import Flask, render_template, request, jsonify
 import requests
 
@@ -17,7 +17,6 @@ def truncate_conversation_history():
     while total_characters > 8000:
         removed_message = conversation_history.pop(0)
         total_characters -= count_characters(removed_message["content"])
-
 
 def get_gpt4_response(prompt):
     global conversation_history
@@ -54,5 +53,6 @@ def message():
     else:
         return jsonify({'response_type': 'success', 'response': response})
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+# Note: Remove or comment out the following lines for production
+# if __name__ == '__main__':
+#     app.run(host='0.0.0.0', port=5000, debug=True)
